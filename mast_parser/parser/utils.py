@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 
 def parse_month(date_str):
-    return datetime.strptime(date_str, 'Deaths in %B %Y').date()
+    return datetime.strptime(date_str, "Deaths in %B %Y").date()
 
 
 def calculate_number_of_days_in_month(month):

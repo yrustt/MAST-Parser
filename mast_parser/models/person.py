@@ -4,7 +4,7 @@ from mast_parser.models.base import Base
 
 
 class FamousPerson(Base):
-    __tablename__ = 'famous_persons'
+    __tablename__ = "famous_persons"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     english_url = Column(String(512), unique=True, nullable=False)

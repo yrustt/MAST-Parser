@@ -14,9 +14,16 @@ dependencies = [
     "alembic (>=1.17.2,<2.0.0)",
     "psycopg2 (>=2.9.11,<3.0.0)",
     "python-dotenv (>=1.2.1,<2.0.0)",
+    "ruff (>=0.14.9,<0.15.0)",
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py312"
+exclude = [
+    "mast_parser/alembic"
+]

@@ -1,1 +1,1 @@
-from .person import FamousPerson
+from .person import FamousPerson  # noqa: F401

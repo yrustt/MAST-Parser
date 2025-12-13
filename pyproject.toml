@@ -1,0 +1,22 @@
+[project]
+name = "mast-parser"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Rustam Yunusov"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "scrapy (>=2.13.4,<3.0.0)",
+    "python-dateutil (>=2.9.0.post0,<3.0.0)",
+    "sqlalchemy (>=2.0.45,<3.0.0)",
+    "alembic (>=1.17.2,<2.0.0)",
+    "psycopg2 (>=2.9.11,<3.0.0)",
+    "python-dotenv (>=1.2.1,<2.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

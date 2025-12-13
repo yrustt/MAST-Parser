@@ -12,7 +12,7 @@ class FamousPerson(Base):
     english_text = Column(Text(), nullable=False)
     russian_url = Column(String(512), index=True, nullable=True)
     russian_name = Column(String(256), index=True, nullable=True)
-    russain_text = Column(Text(), nullable=True)
+    russian_text = Column(Text(), nullable=True)
     sent = Column(Boolean(), index=True, default=False)
 
     def __repr__(self):

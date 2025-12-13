@@ -31,8 +31,6 @@ class WikipediaSpider(scrapy.Spider):
         if start_month:
             self.start_month = datetime.strptime(start_month, "%Y.%m").date()
 
-        print("START_MONTH", self.start_month)
-
         super().__init__(*args, **kwargs)
 
     def start_requests(self):
@@ -62,7 +60,7 @@ class WikipediaSpider(scrapy.Spider):
             "Распаршен месяц %s с количеством дней %s", month, number_of_days
         )
 
-        for day in range(1, 2):
+        for day in range(1, number_of_days):
             day_urls = response.xpath(
                 f'//div[@class="mw-heading mw-heading3" and h3[@id="{day}"]]/'
                 f'following-sibling::ul[1]/li/a[contains(@href, "/wiki/")][1]/@href'

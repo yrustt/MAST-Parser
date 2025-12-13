@@ -1,6 +1,8 @@
+from datetime import date, datetime
 from urllib.parse import urlparse
 
 import scrapy
+from dateutil.relativedelta import relativedelta
 from sqlalchemy import insert, exists
 from sqlalchemy.orm import sessionmaker
 
@@ -16,12 +18,37 @@ from mast_parser.parser.utils import (
 class WikipediaSpider(scrapy.Spider):
     name = "wikipedia"
     allowed_domains = ["wikipedia.org"]
-    start_urls = ["https://en.wikipedia.org/wiki/Deaths_in_July_2010"]
+    start_urls = []
 
     custom_settings = {
         "DOWNLOAD_DELAY": 2,
         "RANDOMIZE_DOWNLOAD_DELAY": 0.5,
     }
+
+    def __init__(self, *args, start_month=None, **kwargs):
+        self.start_month = date.today().replace(day=1) - relativedelta(months=1)
+
+        if start_month:
+            self.start_month = datetime.strptime(start_month, "%Y.%m").date()
+
+        print("START_MONTH", self.start_month)
+
+        super().__init__(*args, **kwargs)
+
+    def start_requests(self):
+        urls = []
+        month, current_month = self.start_month, date.today().replace(day=1)
+
+        while month != current_month:
+            url = month.strftime("Deaths_in_%B_%Y")
+            urls.append(f"https://en.wikipedia.org/wiki/{url}")
+
+            month += relativedelta(months=1)
+
+        self.logger.info("Найдено %s страниц для парсинга", len(urls))
+
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
         Session = sessionmaker(bind=engine)

@@ -1,6 +1,8 @@
 import subprocess
 import sys
 
+from mast_parser import settings
+
 
 def scrape(month: str | None = None):
     """
@@ -11,7 +13,7 @@ def scrape(month: str | None = None):
     command = [
         "scrapy",
         "runspider",
-        "./parser/spider.py",
+        settings.SPIDER_MODULE,
     ]
 
     if month:

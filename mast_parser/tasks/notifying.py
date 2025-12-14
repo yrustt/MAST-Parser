@@ -19,10 +19,11 @@ def notify():
         )
         ids = [person.id for person in last_persons]
 
-        csv = LastFamousPersonToCSVGenerator().execute(last_persons)
-        LastFamousPersonEmailSender().send(csv)
+        if last_persons:
+            csv = LastFamousPersonToCSVGenerator().execute(last_persons)
+            LastFamousPersonEmailSender().send(csv)
 
-        session.execute(
-            update(FamousPerson).where(FamousPerson.id.in_(ids)).values(sent=True)
-        )
-        session.commit()
+            session.execute(
+                update(FamousPerson).where(FamousPerson.id.in_(ids)).values(sent=True)
+            )
+            session.commit()

@@ -15,10 +15,7 @@ def scrape(month: str | None = None):
     ]
 
     if month:
-        command.extend([
-            "-a",
-            f"start_month={month}"
-        ])
+        command.extend(["-a", f"start_month={month}"])
 
     result = subprocess.run(command, stdout=sys.stdout, stderr=sys.stderr)
 

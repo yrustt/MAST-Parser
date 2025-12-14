@@ -8,9 +8,11 @@ from mast_parser import settings
 
 
 def main():
+    log_file = open("logs.txt", "a+")
+
     with daemon.DaemonContext(
-        stdout=open("stdout.log", "a+"),
-        stderr=open("stderr.log", "a+"),
+        stdout=log_file,
+        stderr=log_file,
         working_directory=settings.BASE_DIR,
     ):
         schedule.every().day.at("01:00").do(scrape)

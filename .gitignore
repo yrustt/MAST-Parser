@@ -3,5 +3,4 @@
 __pycache__/
 
 .env
-stderr.log
-stdout.log
+logs.txt

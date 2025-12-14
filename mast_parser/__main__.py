@@ -13,7 +13,7 @@ def main():
         stderr=open("stderr.log", "a+"),
         working_directory=settings.BASE_DIR,
     ):
-        schedule.every().day.at("09:18").do(scrape)
+        schedule.every().day.at("09:36").do(scrape)
         schedule.every().day.at("12:00").do(notify)
 
         while True:

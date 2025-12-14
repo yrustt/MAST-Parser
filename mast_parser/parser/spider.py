@@ -12,6 +12,7 @@ from mast_parser.parser.utils import (
     parse_month,
     calculate_number_of_days_in_month,
     get_search_wiki_url,
+    clean_russian_text,
 )
 
 
@@ -118,7 +119,7 @@ class WikipediaSpider(scrapy.Spider):
         data = {
             **data,
             "russian_name": name,
-            "russian_text": text,
+            "russian_text": clean_russian_text(text),
         }
 
         self.save_model(data)

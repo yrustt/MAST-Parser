@@ -6,4 +6,4 @@
 1. Выполнить `poetry install`
 1. Создать файл .env по аналогии с .env.example и прописать переменные
 1. Запустить `alembic upgrade head`
-2. Запустить `poetry run python -m mast_parser`
+1. Запустить `poetry run python -m mast_parser`
